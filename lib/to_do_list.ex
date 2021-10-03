@@ -10,7 +10,6 @@ defmodule ToDoList do
     end
   end
 
-
   def add_todo(data) do
     name = get_item_name(data)
     titles = get_fields data
