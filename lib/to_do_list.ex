@@ -81,7 +81,7 @@ R)ead Todos    A)dd a Todo    D)elete a Todo    L)oad a .csv    S)ave a .csv
       "l" -> load_csv()
       "s" -> save_csv(data)
       "q" -> "Goodbye!"
-      _   -> get_command(data)
+       _   -> get_command(data)
     end
   end
 
@@ -157,8 +157,13 @@ R)ead Todos    A)dd a Todo    D)elete a Todo    L)oad a .csv    S)ave a .csv
 
   def show_todos(data, next_command? \\ true) do
     items = Map.keys data
-    IO.puts "You have the following Todos:\n"
-    Enum.each items, fn item -> IO.puts item end
+    IO.puts("\n-.-.-.-.-.-.-\nYou have the following TODOs(#{Enum.count(items)}): \n")
+    Enum.each(items, fn item ->
+      IO.puts("\nItem: #{item}\n")
+    Enum.each(get_fields(data), fn field ->
+    IO.puts(" • #{field}: #{data[item][field]}")
+      end)
+    end)
     IO.puts "\n"
     if next_command? do
       get_command(data)
